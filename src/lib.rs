@@ -1,4 +1,4 @@
-pub use ::dpi::*;
+
 
 use serde::{Deserialize, Deserializer, Serialize, Serializer};
 use std::{fmt::Display, str::FromStr};
@@ -9,6 +9,7 @@ pub mod package;
 pub mod webview;
 pub mod window;
 pub mod wire;
+pub mod dpi;
 /// System theme.
 #[derive(Debug, Copy, Clone, PartialEq, Eq)]
 #[non_exhaustive]
