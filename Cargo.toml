@@ -1,0 +1,36 @@
+[package]
+name = "taurino-schema"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+serde = { version = "1.0.229", features = ["derive"] }
+dpi = { version = "0.1.2", features = ["serde"] }
+serde_with = "3.24.0"
+url =  { version = "2", features = ["serde"] }
+uuid =  { version = "1", features = ["v4", "serde"] }
+serde_json = "1.0.151"
+semver = "1"
+serialize-to-javascript = { version = "0.1.2", optional = true }
+
+
+
+# default to small, optimized workspace release binaries
+[profile.release]
+panic = "abort"
+codegen-units = 1
+lto = true
+incremental = false
+opt-level = "s"
+strip = true
+
+# profiles for cli
+[profile.dev.package.miniz_oxide]
+opt-level = 3
+
+[profile.release-size-optimized]
+inherits = "release"
+codegen-units = 1
+lto = true
+incremental = false
+opt-level = "s"
