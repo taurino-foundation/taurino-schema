@@ -1,0 +1,59 @@
+pub use ::dpi::*;
+
+use serde::{Deserialize, Deserializer, Serialize, Serializer};
+use std::fmt::Display;
+
+
+/// A rectangular region.
+#[derive(Clone, Copy, Debug, Serialize, Deserialize)]
+pub struct Rect {
+    /// Rect position.
+    pub position: dpi::Position,
+    /// Rect size.
+    pub size: dpi::Size,
+}
+
+impl Default for Rect {
+    fn default() -> Self {
+        Self {
+            position: Position::Logical((0, 0).into()),
+            size: Size::Logical((0, 0).into()),
+        }
+    }
+}
+
+/// A rectangular region in physical pixels.
+#[derive(Clone, Copy, Debug, Serialize, Deserialize)]
+pub struct PhysicalRect<P: dpi::Pixel, S: dpi::Pixel> {
+    /// Rect position.
+    pub position: dpi::PhysicalPosition<P>,
+    /// Rect size.
+    pub size: dpi::PhysicalSize<S>,
+}
+
+impl<P: dpi::Pixel, S: dpi::Pixel> Default for PhysicalRect<P, S> {
+    fn default() -> Self {
+        Self {
+            position: (0, 0).into(),
+            size: (0, 0).into(),
+        }
+    }
+}
+
+/// A rectangular region in logical pixels.
+#[derive(Clone, Copy, Debug, Serialize, Deserialize)]
+pub struct LogicalRect<P: dpi::Pixel, S: dpi::Pixel> {
+    /// Rect position.
+    pub position: dpi::LogicalPosition<P>,
+    /// Rect size.
+    pub size: dpi::LogicalSize<S>,
+}
+
+impl<P: dpi::Pixel, S: dpi::Pixel> Default for LogicalRect<P, S> {
+    fn default() -> Self {
+        Self {
+            position: (0, 0).into(),
+            size: (0, 0).into(),
+        }
+    }
+}
